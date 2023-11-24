@@ -7,7 +7,6 @@ axios.defaults.headers.common['Authorization'] = API_KEY;
 
 export const getTrendingMovies = async () => {
   const { data } = await axios.get(`trending/all/day?language=en-US`);
-  console.log(data.results);
   return data.results;
 };
 
@@ -15,12 +14,21 @@ export const getMovie = async search => {
   const { data } = await axios.get(
     `search/movie?query=${search}&include_adult=false&language=en-US&page=1`
   );
-  console.log(data);
   return data;
 };
 
 export const getMovieById = async id => {
   const response = await axios.get(`movie/${id}?language=en-US`);
-  console.log(response.data);
   return response;
+};
+
+export const getMovieCastById = async id => {
+  const response = await axios.get(`movie/${id}/credits?language=en-US`);
+  return response.data.cast;
+};
+
+export const getMovieReviewsById = async id => {
+  const response = await axios.get(`movie/${id}/reviews?language=en-US`);
+  console.log(response);
+  return response.data;
 };
