@@ -1,19 +1,16 @@
-import { getMovieById } from 'components/ApiService/ApiService';
-import { useEffect, useRef, useState } from 'react';
 import {
-  Link,
-  NavLink,
-  Outlet,
-  useLocation,
-  useParams,
-} from 'react-router-dom';
+  getMovieById,
+  getTrendingMovies,
+} from 'components/ApiService/ApiService';
+import { MoviesList } from 'pages/TopMoviesList';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 
-export default function MovieDetails() {
+export const TrendingMoviesList = () => {
+  const [trendingMovies, setTrendingMovies] = useState([]);
+
   const [movie, setMovie] = useState(null);
   const params = useParams();
-
-  const location = useLocation();
-  const backLinkRef = useRef(location);
 
   useEffect(() => {
     async function componentDidUpdate() {
@@ -31,15 +28,24 @@ export default function MovieDetails() {
     componentDidUpdate();
   }, [params]);
 
+  useEffect(() => {
+    async function componentDidUpdate() {
+      try {
+        await getTrendingMovies().then(response => {
+          setTrendingMovies(response);
+        });
+      } catch (error) {
+        console.log(error);
+      } finally {
+      }
+    }
+
+    componentDidUpdate();
+  }, []);
+
   return (
     <div>
-      <h2>MovieDetails</h2>
-
-      <Link to={backLinkRef.current.state?.from ?? '/movies'}>
-        Back to movies
-      </Link>
-
-      {movie && (
+      {movie ? (
         <div>
           <img
             src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
@@ -50,18 +56,9 @@ export default function MovieDetails() {
           <h2>{movie.title}</h2>
           <p>{movie.overview}</p>
         </div>
+      ) : (
+        <MoviesList topMoviesList={trendingMovies} />
       )}
-
-      <ul>
-        <li>
-          <NavLink to="cast">Cast</NavLink>
-        </li>
-        <li>
-          <NavLink to="reviews">Reviews</NavLink>
-        </li>
-      </ul>
-
-      <Outlet />
     </div>
   );
-}
+};
