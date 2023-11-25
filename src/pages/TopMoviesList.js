@@ -1,7 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
 
 export const MoviesList = ({ topMoviesList }) => {
-  console.log(topMoviesList);
   const location = useLocation();
 
   return (

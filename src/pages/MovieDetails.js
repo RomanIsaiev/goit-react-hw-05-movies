@@ -16,14 +16,10 @@ export default function MovieDetails() {
   const location = useLocation();
   const backLinkRef = useRef(location);
 
-  console.log(location);
-
   useEffect(() => {
     async function componentDidUpdate() {
       try {
         await getMovieById(params.movieId).then(response => {
-          console.log(params);
-          console.log(response);
           setMovie(response.data);
         });
       } catch (error) {
@@ -33,8 +29,6 @@ export default function MovieDetails() {
 
     componentDidUpdate();
   }, [params]);
-
-  console.log('movie:', movie);
 
   return (
     <div>

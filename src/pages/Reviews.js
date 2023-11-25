@@ -11,7 +11,6 @@ export const Reviews = () => {
     async function componentDidUpdate() {
       try {
         await getMovieReviewsById(params.movieId).then(response => {
-          console.log(response);
           setReviews(response.results);
         });
       } catch (error) {

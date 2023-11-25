@@ -16,8 +16,6 @@ export const TrendingMoviesList = () => {
     async function componentDidUpdate() {
       try {
         await getMovieById(params.movieId).then(response => {
-          console.log(params);
-          console.log(response);
           setMovie(response.data);
         });
       } catch (error) {
