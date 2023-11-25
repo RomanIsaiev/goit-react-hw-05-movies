@@ -1,32 +1,80 @@
 import { useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 
-export const Searchbar = ({ onSubmit }) => {
-  const [searchQuery, setSearchQuery] = useState('');
+// export const Searchbar = ({ onSubmit }) => {
 
-  const handleSearchQuerySubmit = event => {
-    event.preventDefault();
+//   const [searchQuery, setSearchQuery] = useState('');
 
-    if (searchQuery.trim() === '') {
-      return;
-    }
+//   const handleSearchQuerySubmit = event => {
+//     event.preventDefault();
 
-    onSubmit(searchQuery);
-  };
+//     if (searchQuery.trim() === '') {
+//       return;
+//     }
 
-  const handleSearchQueryChange = event => {
-    setSearchQuery(event.currentTarget.value.toLowerCase());
+//     onSubmit(searchQuery);
+//   };
+
+//   const handleSearchQueryChange = event => {
+//     setSearchQuery(event.currentTarget.value.toLowerCase());
+//   };
+
+//   return (
+//     <div>
+//       <form onSubmit={handleSearchQuerySubmit}>
+//         <input
+//           type="text"
+//           autoComplete="off"
+//           name="query"
+//           autoFocus
+//           placeholder="Search images and photos"
+//           onChange={handleSearchQueryChange}
+//         />
+
+//         <button type="submit">seacrh</button>
+//       </form>
+//     </div>
+//   );
+// };
+
+export const Searchbar = () => {
+  const [params, setParams] = useSearchParams();
+  const query = params.get('query') ?? '';
+
+  // const [searchQuery, setSearchQuery] = useState('');
+
+  // const handleSearchQuerySubmit = event => {
+  //   event.preventDefault();
+
+  //   if (searchQuery.trim() === '') {
+  //     return;
+  //   }
+
+  //   onSubmit(searchQuery);
+  // };
+
+  // const handleSearchQueryChange = event => {
+  //   setSearchQuery(event.currentTarget.value.toLowerCase());
+  // };
+
+  console.log(query);
+
+  console.log(params.get('query'));
+
+  const updateQuery = value => {
+    params.set('query', value);
+    setParams(params);
   };
 
   return (
     <div>
-      <form onSubmit={handleSearchQuerySubmit}>
+      <form onSubmit={updateQuery}>
         <input
           type="text"
           autoComplete="off"
           name="query"
           autoFocus
           placeholder="Search images and photos"
-          onChange={handleSearchQueryChange}
         />
 
         <button type="submit">seacrh</button>

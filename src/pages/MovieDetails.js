@@ -1,4 +1,5 @@
 import { getMovieById } from 'components/ApiService/ApiService';
+import { GenresList } from 'components/MovieGenresList/MovieGenresList';
 import { useEffect, useRef, useState } from 'react';
 import {
   Link,
@@ -15,6 +16,8 @@ export default function MovieDetails() {
   const location = useLocation();
   const backLinkRef = useRef(location);
 
+  console.log(location);
+
   useEffect(() => {
     async function componentDidUpdate() {
       try {
@@ -30,6 +33,8 @@ export default function MovieDetails() {
 
     componentDidUpdate();
   }, [params]);
+
+  console.log('movie:', movie);
 
   return (
     <div>
@@ -48,7 +53,15 @@ export default function MovieDetails() {
             height={400}
           />
           <h2>{movie.title}</h2>
-          <p>{movie.overview}</p>
+          <p>User Score: </p>
+          <div>
+            <b>Overview</b>
+            <p> {movie.overview}</p>
+          </div>
+          <div>
+            <b>Genres</b>
+            <GenresList genres={movie.genres} />
+          </div>
         </div>
       )}
 
