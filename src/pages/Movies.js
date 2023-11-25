@@ -34,7 +34,9 @@ export default function Movies() {
   return (
     <div>
       <Searchbar />
-      {movies.length > 0 && <SearchMoviesList moviesList={movies} />}
+      {movies.length > 0 && query !== '' && (
+        <SearchMoviesList moviesList={movies} />
+      )}
     </div>
   );
 }
