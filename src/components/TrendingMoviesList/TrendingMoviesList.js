@@ -8,6 +8,7 @@ import { useParams } from 'react-router-dom';
 
 export const TrendingMoviesList = () => {
   const [trendingMovies, setTrendingMovies] = useState([]);
+  // const [isLoading, setIsLoading] = useState(false);
 
   const [movie, setMovie] = useState(null);
   const params = useParams();

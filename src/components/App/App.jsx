@@ -1,9 +1,3 @@
-// import { Cast } from 'pages/Cast';
-// import Home from 'pages/Home';
-// import MovieDetails from 'pages/MovieDetails';
-// import Movies from 'pages/Movies';
-// import NotFoundPage from 'pages/NotFoundPage';
-// import { Reviews } from 'pages/Reviews';
 import { Suspense, lazy } from 'react';
 import { NavLink, Route, Routes } from 'react-router-dom';
 
