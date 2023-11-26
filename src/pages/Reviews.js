@@ -3,7 +3,7 @@ import { ReviewsList } from 'components/ReviewsList/ReviewsList';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-export const Reviews = () => {
+export default function Reviews() {
   const [reviews, setReviews] = useState([]);
   const params = useParams();
 
@@ -22,4 +22,4 @@ export const Reviews = () => {
   }, [params]);
 
   return <div>{<ReviewsList reviews={reviews} />}</div>;
-};
+}

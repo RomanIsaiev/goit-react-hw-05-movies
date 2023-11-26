@@ -3,7 +3,7 @@ import { CastList } from 'components/CastList/CastList';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-export const Cast = () => {
+export default function Cast() {
   const [casts, setCasts] = useState([]);
   const params = useParams();
 
@@ -22,4 +22,4 @@ export const Cast = () => {
   }, [params]);
 
   return <div>{<CastList casts={casts} />}</div>;
-};
+}
