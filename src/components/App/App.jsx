@@ -1,6 +1,8 @@
 import { Suspense, lazy } from 'react';
 import { NavLink, Route, Routes } from 'react-router-dom';
 
+import { Container, NavList, ListItem } from './App.styled';
+
 const Home = lazy(() => import('pages/Home'));
 const Movies = lazy(() => import('pages/Movies'));
 const MovieDetails = lazy(() => import('pages/MovieDetails'));
@@ -10,17 +12,17 @@ const NotFoundPage = lazy(() => import('pages/NotFoundPage'));
 
 export const App = () => {
   return (
-    <div>
+    <Container>
       <header>
         <nav>
-          <ul>
-            <li>
+          <NavList>
+            <ListItem>
               <NavLink to="/">Home</NavLink>
-            </li>
-            <li>
+            </ListItem>
+            <ListItem>
               <NavLink to="/movies">Movies</NavLink>
-            </li>
-          </ul>
+            </ListItem>
+          </NavList>
         </nav>
       </header>
       <Suspense fallback={<div>LOADING PAGE...</div>}>
@@ -34,6 +36,6 @@ export const App = () => {
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Suspense>
-    </div>
+    </Container>
   );
 };
