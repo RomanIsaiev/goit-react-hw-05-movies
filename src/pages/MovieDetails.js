@@ -17,6 +17,7 @@ export default function MovieDetails() {
           setMovie(response.data);
         });
       } catch (error) {
+        console.log(error);
       } finally {
       }
     }

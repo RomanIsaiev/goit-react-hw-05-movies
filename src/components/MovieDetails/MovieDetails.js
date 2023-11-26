@@ -23,7 +23,7 @@ export const Movie = ({ movie }) => {
           />
         </div>
         <div>
-          <h2>{movie.title}</h2>
+          <h2>{movie.title || movie.name}</h2>
           <p>User Score: {(Math.round(movie.vote_average) / 10) * 100}%</p>
           <div>
             <h3>Overview</h3>
