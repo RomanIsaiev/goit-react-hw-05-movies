@@ -1,11 +1,13 @@
+const { GenresListStyled } = require('./MovieGenresList.styled');
+
 export const GenresList = ({ genres }) => {
   return (
-    <ul>
+    <GenresListStyled>
       {genres.map(genre => (
         <li key={genre.id}>
           <p>{genre.name}</p>
         </li>
       ))}
-    </ul>
+    </GenresListStyled>
   );
 };

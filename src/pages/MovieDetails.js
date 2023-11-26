@@ -1,13 +1,7 @@
 import { getMovieById } from 'components/ApiService/ApiService';
 import { Movie } from 'components/MovieDetails/MovieDetails';
 import { useEffect, useRef, useState } from 'react';
-import {
-  Link,
-  NavLink,
-  Outlet,
-  useLocation,
-  useParams,
-} from 'react-router-dom';
+import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 
 export default function MovieDetails() {
   const [movie, setMovie] = useState(null);
@@ -32,22 +26,12 @@ export default function MovieDetails() {
 
   return (
     <div>
-      <h2>MovieDetails</h2>
-
       <Link to={backLinkRef.current.state?.from ?? '/movies'}>
         Back to movies
       </Link>
 
+      <h2>MovieDetails</h2>
       {movie && <Movie movie={movie} />}
-
-      <ul>
-        <li>
-          <NavLink to="cast">Cast</NavLink>
-        </li>
-        <li>
-          <NavLink to="reviews">Reviews</NavLink>
-        </li>
-      </ul>
 
       <Outlet />
     </div>

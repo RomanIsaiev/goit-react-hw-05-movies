@@ -1,10 +1,12 @@
+const { CastListStyled, CastItemStyled } = require('./CastList.styled');
+
 export const CastList = ({ casts }) => {
   const defaultImage =
     'https://s3.amazonaws.com/37assets/svn/765-default-avatar.png';
   return (
-    <ul>
+    <CastListStyled>
       {casts.map(cast => (
-        <li key={cast.cast_id}>
+        <CastItemStyled key={cast.cast_id}>
           <img
             src={
               cast.profile_path
@@ -13,11 +15,12 @@ export const CastList = ({ casts }) => {
             }
             alt={cast.name}
             width={250}
+            height={375}
           />
           <h3>Name: {cast.name}</h3>
           <p>Character: {cast.character}</p>
-        </li>
+        </CastItemStyled>
       ))}
-    </ul>
+    </CastListStyled>
   );
 };
